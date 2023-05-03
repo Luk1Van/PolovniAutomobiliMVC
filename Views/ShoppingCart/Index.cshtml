@@ -1,0 +1,40 @@
+﻿@model PolovniAutomobiliMVC.ViewModels.ShoppingCartViewModel
+
+<h2>Your shopping cart</h2>
+<h4>The high quality cars are in your cart!</h4>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Selected Amount</th>
+            <th>Car</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.ShoppingCart.ShoppingCartItems)
+        {
+            <tr>
+                <td class="text-center">@item.Amount</td>
+                <td class="text-left">@item.Car.Name</td>
+                <td class="text-right">@item.Car.Price</td>
+                <td class="text-right">
+                    @((item.Amount * item.Car.Price).ToString("c"))
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td>
+                @Model.TotalPrice.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+                <div class="text-center">
+                    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Checkout now!</a>
+                </div>
